@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,9 +12,6 @@ export const metadata: Metadata = {
   description: 'My images app',
 }
 
-function Contact() {
-    return null;
-}
 
 export default function RootLayout({
   children,
@@ -25,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
       <Navbar/>
       <main>{children}</main>
-      <Contact/>
+      <Footer/>
       </body>
     </html>
   )
