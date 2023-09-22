@@ -7,7 +7,7 @@ email
 avatarUrl
 description
 githubUrl
-linkedinUrl
+linkedInUrl
 }
 }
 `
@@ -21,7 +21,7 @@ email
 avatarUrl
 description
 githubUrl
-linkedinUrl
+linkedInUrl
 }
 }
 }
