@@ -25,16 +25,17 @@ const Navbar = async () => {
             <div className="bg-pink-800 flexCenter gap-4">
                 {session?.user ? (
                     <>
-                        {session?.user?.image
-                        &&   (<Image
-                                src={session.user.image}
-                                width={40}
-                                height={40}
-                                className="rounded-full"
-                                alt={session.user.name}
-                            />)}
+                        <p>Hello</p>
+                        {/*{session?.user?.image*/}
+                        {/*&&   (<Image*/}
+                        {/*        src={session.user.image}*/}
+                        {/*        width={40}*/}
+                        {/*        height={40}*/}
+                        {/*        className="rounded-full"*/}
+                        {/*        alt={session.user.name}*/}
+                        {/*    />)}*/}
 
-                        <Link href='/create-project'>Share work</Link>
+                        {/*<Link href='/create-project'>Share work</Link>*/}
                     </>
                 ) : <AuthProviders/>}
             </div>

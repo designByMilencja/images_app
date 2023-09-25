@@ -17,11 +17,12 @@ const AuthProviders = () => {
     useEffect(() => {
         const fetchProviders = async () => {
             const res = await getProviders();
-            console.log(providers)
             setProviders(res);
+            console.log(providers)
         }
         fetchProviders()
     }, [])
+
     if (providers) {
         return (
             <div>
