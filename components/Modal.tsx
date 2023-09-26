@@ -22,7 +22,7 @@ const Modal = ({children}: { children: ReactNode }) => {
 
     return (
         <div ref={overlay} className="modal" onClick={handleClick}>
-            <button type="button" onClick={onDismiss} className='absolute top-1 right-8'>
+            <button type="button" onClick={onDismiss} className='absolute top-[.7%] right-8'>
                 <Image src="/icons/bug-outline.svg" width={17} height={17} alt="close" className="bg-white"/>
             </button>
             <div ref={wrapper} className="modal_wrapper">
