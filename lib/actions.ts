@@ -23,7 +23,7 @@ export const fetchToken = async () => {
     }
 }
 
-const makeGraphQLRequest = async (query: string, variables = {}) => {
+export const makeGraphQLRequest = async (query: string, variables = {}) => {
     try {
         return await client.request(query, variables);
     } catch (e) {
