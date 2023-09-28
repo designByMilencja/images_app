@@ -13,7 +13,7 @@ type ProjectSearch = {
     },
 }
 const Home = async () => {
-    const data = await fetchAllProjects() as ProjectSearch;
+    const data = await fetchAllProjects('Frontend') as ProjectSearch;
     const projectsToDisplay = data?.projectSearch?.edges || [];
     if (projectsToDisplay.length === 0) {
         return (
@@ -29,13 +29,13 @@ const Home = async () => {
           <section className="projects-grid">
               {projectsToDisplay.map(({node}: {node: ProjectInterface}) => (
                   <ProjectCard
-                  key={node?.id}
-                  id={node?.id}
-                  image={node?.image}
-                  title={node?.title}
-                  name={node?.createdBy.name}
-                  avatarUrl={node?.createdBy.avatarUrl}
-                  userId={node?.createdBy.id}
+                  key={`${node?.id}`}
+                  id={`${node?.id}`}
+                  image={`${node?.image}`}
+                  title={`${node?.title}`}
+                  name={`${node?.createdBy.name}`}
+                  avatarUrl={`${node?.createdBy.avatarUrl}`}
+                  userId={`${node?.createdBy.id}`}
                   />
               ))}
           </section>
