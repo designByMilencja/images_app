@@ -4,6 +4,7 @@ import {ProjectInterface} from "@/common.types";
 import Modal from "@/components/Modal";
 import Image from "next/image";
 import Link from "next/link";
+import RelatedProjects from "@/components/RelatedProjects";
 
 const Project = async ({params: {id}}: { params: { id: string } }) => {
     const session = await getCurrentUser();
@@ -85,6 +86,8 @@ const Project = async ({params: {id}}: { params: { id: string } }) => {
                     <span className="w-full h-0.5 bg-light-white-200" />
                 </section>
             </div>
+            <RelatedProjects
+            userId={createdBy?.id} projectId={id}/>
         </Modal>
     );
 }
