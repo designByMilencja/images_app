@@ -1,6 +1,7 @@
 import {fetchAllProjects} from "@/lib/actions";
 import {ProjectInterface} from "@/common.types";
 import ProjectCard from "@/components/ProjectCard";
+import Categories from "@/components/Categories";
 type ProjectSearch = {
     projectSearch: {
         edges: { node: ProjectInterface }[];
@@ -25,7 +26,7 @@ const Home = async () => {
     }
   return (
       <section className="flexStart flex-col paddings mb-16">
-          <h1>Categories</h1>
+          <Categories/>
           <section className="projects-grid">
               {projectsToDisplay.map(({node}: {node: ProjectInterface}) => (
                   <ProjectCard
