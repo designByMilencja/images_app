@@ -4,6 +4,8 @@ import {ProjectInterface} from "@/common.types";
 import Modal from "@/components/Modal";
 import Image from "next/image";
 import Link from "next/link";
+import RelatedProjects from "@/components/RelatedProjects";
+import ProjectActions from "@/components/ProjectActions";
 
 const Project = async ({params: {id}}: { params: { id: string } }) => {
     const session = await getCurrentUser();
@@ -39,15 +41,21 @@ const Project = async ({params: {id}}: { params: { id: string } }) => {
                                 {createdBy?.name}
                             </Link>
                             <Image src="/icons/bug-outline.svg" width={8} height={8} alt="dot" />
-                            <Link href={`/?category=${projectDetails.category}`} className="text-primary-purple font-semibold">
-                                {projectDetails?.category}
+                            <Link href={`/?category=${category}`} className="text-primary-purple font-semibold">
+                                {category}
                             </Link>
                         </div>
                     </div>
                 </div>
 
+                {session?.user?.email === projectDetails?.createdBy?.email && (
+                    <div className="flex justify-end items-center gap-2">
+                        <ProjectActions projectId={projectDetails.id} />
+                    </div>
+                )}
 
-                <div className="mt-5">
+
+                <div className="mt-14">
                     <Image
                         src={image}
                         width={1064}
@@ -85,6 +93,8 @@ const Project = async ({params: {id}}: { params: { id: string } }) => {
                     <span className="w-full h-0.5 bg-light-white-200" />
                 </section>
             </div>
+            <RelatedProjects
+            userId={createdBy?.id} projectId={id}/>
         </Modal>
     );
 }
