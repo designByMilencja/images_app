@@ -28,11 +28,8 @@ const AuthProviders = () => {
             <div>
                 {Object.values(providers).map(
                     (provider: Provider, i) => (
-                        <Button
-                            key={i}
-                            title="Sign In"
-                            handleClick={()=>signIn(provider?.id as string)}>{provider.id}</Button>)
-                )}
+                        <Button key={i} title='Sign In' handleClick={() => signIn(provider?.id as string)} />))
+                }
             </div>
         )
     }
