@@ -6,25 +6,25 @@ import FormField from "@/components/FormField";
 import CustomMenu from "@/components/CustomMenu";
 import {categoryFilters} from "@/constants";
 import Button from "@/components/Button";
-import {createNewProject, fetchToken} from "@/lib/actions";
+import {createNewProject, fetchToken, updateProject} from "@/lib/actions";
 import {useRouter} from "next/navigation";
 
 type Props = {
     type: string;
     session: SessionInterface;
-    project?: ProjectInterface
+    project?: ProjectInterface;
 
 }
 const ProjectForm = ({type, session, project}: Props) => {
     const router = useRouter();
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
     const [form, setForm] = useState({
-        title: '',
-        description: '',
-        image: '',
-        liveSiteUrl: '',
-        githubUrl: '',
-        category: ''
+        title: project?.title || '',
+        description: project?.description || '',
+        image: project?.image || '',
+        liveSiteUrl: project?.liveSiteUrl || '',
+        githubUrl: project?.githubUrl || '',
+        category: project?.category || '',
     });
     const handleFormSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -33,6 +33,10 @@ const ProjectForm = ({type, session, project}: Props) => {
         try {
             if (type === "create") {
                 await createNewProject(form, session?.user?.id, token);
+                router.push('/');
+            }
+            if (type === "edit") {
+                await updateProject(form, project?.id as string, token);
                 router.push('/');
             }
         } catch (e) {
