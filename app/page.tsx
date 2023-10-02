@@ -6,7 +6,7 @@ import Pagination from "@/components/Pagination";
 
 type SearchParams = {
     category?: string;
-    endCursor?: string | null;
+    endcursor?: string | null;
 }
 
 type Props = {
