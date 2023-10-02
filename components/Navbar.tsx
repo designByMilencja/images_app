@@ -6,6 +6,7 @@ import {getCurrentUser} from "@/lib/session";
 import ProfileMenu from "@/components/ProfileMenu";
 
 const Navbar = async () => {
+    const url = '/create-project';
     const session = await getCurrentUser();
     return (
         <nav className="flexBetween navbar">
@@ -27,7 +28,7 @@ const Navbar = async () => {
                 {session?.user ? (
                     <>
                         <ProfileMenu session={session}/>
-                        <Link href='/create-project'>Share work</Link>
+                        <Link href={url}>Share work</Link>
                     </>
                 ) : <AuthProviders/>}
             </div>
