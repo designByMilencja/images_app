@@ -1,11 +1,12 @@
-import { ProjectInterface } from "@/common.types";
+import {ProjectInterface} from "@/common.types";
 import Categories from "@/components/Categories";
 import ProjectCard from "@/components/ProjectCard";
-import { fetchAllProjects } from "@/lib/actions";
+import {fetchAllProjects} from "@/lib/actions";
+import Pagination from "@/components/Pagination";
 
 type SearchParams = {
     category?: string;
-    endcursor?: string | null;
+    endCursor?: string | null;
 }
 
 type Props = {
@@ -24,7 +25,10 @@ type ProjectSearch = {
     },
 }
 
-const Home = async ({ searchParams: { category, endcursor } }: Props) => {
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+export const revalidate = 0;
+const Home = async ({searchParams: {category, endcursor}}: Props) => {
     const data = await fetchAllProjects(category, endcursor) as ProjectSearch;
 
     const projectsToDisplay = data?.projectSearch?.edges || [];
@@ -32,31 +36,37 @@ const Home = async ({ searchParams: { category, endcursor } }: Props) => {
     if (projectsToDisplay.length === 0) {
         return (
             <section className="flexStart flex-col paddings">
-                <Categories />
+                <Categories/>
 
                 <p className="no-result-text text-center">No projects found, go create some first.</p>
             </section>
         )
     }
-  return (
-      <section className="flexStart flex-col paddings mb-16">
-          <Categories/>
-          <section className="projects-grid">
-              {projectsToDisplay.map(({node}: {node: ProjectInterface}) => (
-                  <ProjectCard
-                  key={`${node?.id}`}
-                  id={`${node?.id}`}
-                  image={`${node?.image}`}
-                  title={`${node?.title}`}
-                  name={`${node?.createdBy.name}`}
-                  avatarUrl={`${node?.createdBy.avatarUrl}`}
-                  userId={`${node?.createdBy.id}`}
-                  />
-              ))}
-          </section>
-
-      </section>
-  )
+    const pagination = data?.projectSearch?.pageInfo;
+    return (
+        <section className="flexStart flex-col paddings mb-16">
+            <Categories/>
+            <section className="projects-grid">
+                {projectsToDisplay.map(({node}: { node: ProjectInterface }) => (
+                    <ProjectCard
+                        key={`${node?.id}`}
+                        id={`${node?.id}`}
+                        image={`${node?.image}`}
+                        title={`${node?.title}`}
+                        name={`${node?.createdBy.name}`}
+                        avatarUrl={`${node?.createdBy.avatarUrl}`}
+                        userId={`${node?.createdBy.id}`}
+                    />
+                ))}
+            </section>
+            <Pagination
+                startCursor={pagination?.startCursor as string}
+                endCursor={pagination?.endCursor as string}
+                hasNextPage={pagination?.hasNextPage as boolean}
+                hasPreviousPage={pagination?.hasPreviousPage as boolean}
+            />
+        </section>
+    )
 };
 
 export default Home;
