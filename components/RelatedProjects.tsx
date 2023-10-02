@@ -21,7 +21,7 @@ const RelatedProjects = async ({userId, projectId}:Props) => {
                 </Link>
             </div>
             <div className="related_projects-grid">
-                {filteredProjects.map(({node}: {node: ProjectInterface}) => (
+                {filteredProjects?.map(({node}: {node: ProjectInterface}) => (
                      <div className="flexCenter related_project-card drop-shadow-card"
                      key={node?.id}
                      >
