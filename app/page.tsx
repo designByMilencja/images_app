@@ -20,7 +20,7 @@ type ProjectSearch = {
             hasPreviousPage: boolean;
             hasNextPage: boolean;
             startCursor: string;
-            endcursor: string;
+            endCursor: string;
         };
     },
 }
@@ -61,7 +61,7 @@ const Home = async ({searchParams: {category, endcursor}}: Props) => {
             </section>
             <Pagination
                 startCursor={pagination?.startCursor as string}
-                endCursor={pagination?.endcursor as string}
+                endCursor={pagination?.endCursor as string}
                 hasNextPage={pagination?.hasNextPage as boolean}
                 hasPreviousPage={pagination?.hasPreviousPage as boolean}
             />
