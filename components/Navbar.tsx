@@ -8,8 +8,8 @@ import ProfileMenu from "@/components/ProfileMenu";
 const Navbar = async () => {
     const session = await getCurrentUser();
     return (
-        <nav className="bg-black flexBetween navbar">
-            <div className="bg-orange-400 flex-1 flexStart gap-10">
+        <nav className="flexBetween navbar">
+            <div className="flex-1 flexStart gap-10">
                 <Link href="/">
                     <Image
                         src="/icons/bug-outline.svg"
@@ -17,13 +17,13 @@ const Navbar = async () => {
                         height={50}
                         alt="a logo item - the little bug outline"/>
                 </Link>
-                <ul className="bg-blue-100 xs:flex hidden text-small gap-7">
+                <ul className="xs:flex hidden text-small gap-7">
                     {navLinks.map((link) => (
                         <Link href={link.href} key={link.key}>{link.text}</Link>
                     ))}
                 </ul>
             </div>
-            <div className="bg-pink-800 flexCenter gap-4">
+            <div className="flexCenter gap-4">
                 {session?.user ? (
                     <>
                         <ProfileMenu session={session}/>
